@@ -31,6 +31,8 @@ def record_gpus(gpus):
                 pass
         
         
+        # If the container has the lowest price div, the description is number of ratings i.e. (22).
+        # Assume that this string is <= 7 characters
         description = (((gpu.a).next_sibling).div).next_sibling.text
         if(len(description) <= 7):
             description = ((((gpu.a).next_sibling).div).next_sibling).next_sibling.text
@@ -65,43 +67,3 @@ for page in range(1, number_of_pages+1):
     record_gpus(gpus)
 
 f.close()
-
-
-
-
-
-# gpu = document.find_all(class_="item-container")[5]
-# f = open("stats.csv", "a")
-
-#Brand: 
-# Try except block used if container has lowest price div:
-# try:
-#     brand_name = ((gpu.a).next_sibling).div.a.img
-#     f.write(brand_name["title"])
-# except:
-#     brand_name = ((((gpu.a).next_sibling).div).next_sibling).a.img
-#     f.write(brand_name["title"])
-
-# Item description:
-
-# If the container has the lowest price div, the description is number of ratings i.e. (22).
-# Assume that this string is <= 7 characters
-# description = (((gpu.a).next_sibling).div).next_sibling.text
-# if(len(description) <= 7):
-#     description = ((((gpu.a).next_sibling).div).next_sibling).next_sibling.text
-
-
-# print(description)
-
-#Price:
-# price_dollar = (((((gpu.a).next_sibling).next_sibling).ul.li).next_sibling).next_sibling.strong.text
-# price_cents = (((((gpu.a).next_sibling).next_sibling).ul.li).next_sibling).next_sibling.sup.text
-# print("$" + price_dollar + price_cents)
-
-#Rating:
-# try:
-#     rating = ((((((gpu.a).next_sibling).div).next_sibling).a).next_sibling)["title"].split("+")[-1].strip()
-#     print(rating)
-# except:
-#     rating = (((((gpu.a).next_sibling).div).a).next_sibling)["title"].split("+")[-1].strip()
-#     print(rating)
