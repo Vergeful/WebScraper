@@ -52,9 +52,9 @@ f = open("lol.html", "a")
 # print("$" + price_dollar + price_cents)
 
 #Rating:
-try:
-    rating = ((((((gpu.a).next_sibling).div).next_sibling).a).next_sibling)["title"].split("+")[-1].strip()
-    print(rating)
-except:
-    rating = (((((gpu.a).next_sibling).div).a).next_sibling)["title"].split("+")[-1].strip()
-    print(rating)
+# try:
+#     rating = ((((((gpu.a).next_sibling).div).next_sibling).a).next_sibling)["title"].split("+")[-1].strip()
+#     print(rating)
+# except:
+#     rating = (((((gpu.a).next_sibling).div).a).next_sibling)["title"].split("+")[-1].strip()
+#     print(rating)
