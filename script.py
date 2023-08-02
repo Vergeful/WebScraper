@@ -8,10 +8,11 @@ document = BeautifulSoup(webpage.text, "html.parser")
 # Find how many pages there are:
 pages = document.find(class_="list-tool-pagination-text").strong #<strong>1<!-- -->/<!-- -->6</strong>
 
-#Split string to obtain: <strong>1<!-- --> , <!-- -->6<, strong>
-# [1] obtains <!-- -->6<
-# split(">")[-1][:-1] obtains 6
-number_of_pages = int(str(pages).split("/")[1].split(">")[-1][:-1])
+#Split string to obtain: 
+# str(pages).split("<") : ['', 'strong>1', '!-- -->/', '!-- -->6', '/strong>']
+# [-2] index returns : '!-- -->6'
+# split(">")[-1] returns the number of pages
+number_of_pages = int((str(pages).split("<")[-2]).split(">")[-1])
 
 
 #Begin writing to csv file:
@@ -29,12 +30,13 @@ def record_gpus(gpus):
            brand = "N/A"
        
        description = (gpu.find_all(class_="item-title"))[0].text
+       description = description.replace('"', ' ')
 
        price_dollars = (gpu.find_all(class_="price-current"))[0].strong.text
        price_cents = (gpu.find_all(class_="price-current"))[0].sup.text 
        price = "$" + price_dollars + price_cents
        
-       # Some ratings are not listed
+       # Some ratings are not listed:
        try:
            rating= gpu.find_all(class_="item-rating")[0]["title"].split("+")[-1].strip()
        except:
